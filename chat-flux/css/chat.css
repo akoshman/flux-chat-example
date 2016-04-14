@@ -1,0 +1,41 @@
+.chat-block {
+  height: 500px;
+  padding: 0;
+  border-width: 3px;
+  border-color: #C7C7E4;
+  border-style: solid;
+}
+  
+.chat-block .title {
+  font-size: 1.5em;
+  margin: 10px 15px 10px 15px;
+}
+
+.thread-item {
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  margin: 0;
+  padding: 15px;
+  background-color: #EFEFEF;
+  cursor: pointer;
+}
+
+.thread-item.active {
+  background-color: #BBCDF5;
+}
+
+.thread-item.active {
+  cursor: default;
+}
+
+.thread-item:hover:not(.active) {
+  background-color: #E0E7F7;
+}
+
+.message-send-block-left {
+  padding: 5px 5px 0 0;
+}
+
+.message-send-block-right {
+  padding: 5px 0 0 5px;
+}
