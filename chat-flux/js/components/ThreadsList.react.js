@@ -34,7 +34,11 @@ var ThreadsList = React.createClass({
       <div className="">
 
         <div className="row">
-          <div className="col-xs-12"><div className="title">Conversations</div></div>
+          <div className="col-xs-12">
+            <div className="title-wrapper">
+              <div className="title">Conversations</div>
+            </div>
+          </div>
         </div>
 
         {items}

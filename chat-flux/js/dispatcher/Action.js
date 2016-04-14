@@ -11,6 +11,13 @@ module.exports = {
       type: ActionTypes.SELECT_THREAD,
       threadId: threadId
     });
-  }
+  },
+
+  sendMessage: function (text) {
+    ChatAppDispatcher.dispatch({
+      type: ActionTypes.SEND_MESSAGE,
+      text: text
+    });
+  },
 
 };

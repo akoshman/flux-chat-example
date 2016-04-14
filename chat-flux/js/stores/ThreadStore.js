@@ -13,9 +13,28 @@ var _currentThreadId = -1;
 
 function putMessageToThread(message, thread) {
   thread.messages.push(message);
-  thread.unreadMessagesCount++;
+  if (thread.id !== ThreadStore.getCurrentThreadId()) thread.unreadMessagesCount++;
 }
 
+/**
+ * Thread's format:
+    {
+      "id": 1,
+      "user": "Alice",
+      "messages": [
+        {
+          "id": 1,
+          "user": "Alice",
+          "userId": 1,
+          "isOutgoing": false,
+          "time": 1460665778235,
+          "text": "Hi there!"
+        }
+      ],
+      "isActive": true,
+      "unreadMessagesCount": 0
+    }
+ */
 var ThreadStore = assign({}, EventEmitter.prototype, {
 
   emitChange: function () {
@@ -48,12 +67,22 @@ var ThreadStore = assign({}, EventEmitter.prototype, {
    * @param {number} id
    */
   getThreadById: function (id) {
-    for (var i = 0; i < _threads.length; i++) {
-      if (_threads[i].id == id) {
-        return _threads[i];
+    if (id) {
+      for (var i = 0; i < _threads.length; i++) {
+        if (_threads[i].id == id) {
+          return _threads[i];
+        }
       }
     }
     return null;
+  },
+
+  getCurrentThread: function () {
+    return this.getThreadById(this.getCurrentThreadId());
+  },
+
+  putMessage: function (message) {
+    return this.putMessages([message]);
   },
 
   putMessages: function (messages) {
@@ -88,9 +117,22 @@ ThreadStore.dispatchToken = ChatAppDispatcher.register(function (action) {
       ThreadStore.emitChange();
       break;
 
+    // TODO
     case ActionTypes.RECEIVE_MESSAGES:
       debugger;
-      ThreadStore.init(action.messages);
+      break;
+
+    case ActionTypes.SEND_MESSAGE:
+      var thread = ThreadStore.getCurrentThread();
+      var message = {
+        id: +new Date(),
+        user: thread.user,
+        userId: thread.id,
+        isOutgoing: true,
+        time: +new Date(),
+        text: action.text
+      };
+      ThreadStore.putMessage(message);
       ThreadStore.emitChange();
       break;
 
@@ -108,6 +150,13 @@ var messages = [
     userId: 1,
     time: +new Date(),
     text: 'Hi there!'
+  },
+  {
+    id: 11,
+    user: 'Alice',
+    userId: 1,
+    time: +new Date(),
+    text: 'How are you?'
   },
   {
     id: 2,

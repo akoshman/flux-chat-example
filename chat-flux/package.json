@@ -10,7 +10,8 @@
     "object-assign": "^1.0.0",
     "react": "^0.12.0",
     "bootstrap": "^3.3.6",
-    "jquery": "^2.2.3"
+    "jquery": "^2.2.3",
+    "moment": "^2.12.0"
   },
   "devDependencies": {
     "browserify": "^6.2.0",
