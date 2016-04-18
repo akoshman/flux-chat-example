@@ -6,7 +6,8 @@ var React = require('react');
 
 function getStateFromStores() {
   return {
-    thread: ThreadStore.getCurrentThread()
+    thread: ThreadStore.getCurrentThread(),
+    threadsCount: ThreadStore.getThreadsCount()
   };
 }
 
@@ -26,7 +27,9 @@ var ChatSection = React.createClass({
 
   render: function () {
     var thread = this.state.thread;
+    var hasConversations = this.state.threadsCount > 0;
     var title = thread ? 'Chatting with ' + thread.user : 'Select a conversation leftward';
+
     var messages = [];
     if (thread) {
       messages = thread.messages.map(function (message) {
@@ -35,6 +38,12 @@ var ChatSection = React.createClass({
         )
       })
     }
+    if (!hasConversations) {
+      return (
+        <div />
+      )
+    }
+
     return (
       <div>
         <div className="title-wrapper">

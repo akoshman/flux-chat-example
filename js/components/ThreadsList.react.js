@@ -6,7 +6,8 @@ var React = require('react');
 
 function getStateFromStores() {
   return {
-    threads: ThreadStore.getAllThreads()
+    threads: ThreadStore.getAllThreads(),
+    threadsCount: ThreadStore.getThreadsCount()
   };
 }
 
@@ -25,6 +26,8 @@ var ThreadsList = React.createClass({
   },
 
   render: function () {
+    var title = this.state.threadsCount > 0 ? 'Conversations' : 'No conversations yet';
+    
     var items = this.state.threads.map(function (thread) {
       return (
         <ThreadListItem key={thread.id} thread={thread}/>
@@ -36,7 +39,7 @@ var ThreadsList = React.createClass({
         <div className="row">
           <div className="col-xs-12">
             <div className="title-wrapper">
-              <div className="title">Conversations</div>
+              <div className="title">{title}</div>
             </div>
           </div>
         </div>

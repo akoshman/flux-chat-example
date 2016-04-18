@@ -59,6 +59,10 @@ var ThreadStore = assign({}, EventEmitter.prototype, {
     return _threads;
   },
 
+  getThreadsCount: function () {
+    return _threads.length;
+  },
+
   getCurrentThreadId: function () {
     return _currentThreadId;
   },
@@ -117,9 +121,9 @@ ThreadStore.dispatchToken = ChatAppDispatcher.register(function (action) {
       ThreadStore.emitChange();
       break;
 
-    // TODO
-    case ActionTypes.RECEIVE_MESSAGES:
-      debugger;
+    case ActionTypes.RETRIEVE_MESSAGES:
+      ThreadStore.putMessages(action.messages);
+      ThreadStore.emitChange();
       break;
 
     case ActionTypes.SEND_MESSAGE:
@@ -141,39 +145,6 @@ ThreadStore.dispatchToken = ChatAppDispatcher.register(function (action) {
   }
 
 });
-
-// TODO Remove test data from here
-var messages = [
-  {
-    id: 1,
-    user: 'Alice',
-    userId: 1,
-    time: +new Date(),
-    text: 'Hi there!'
-  },
-  {
-    id: 11,
-    user: 'Alice',
-    userId: 1,
-    time: +new Date(),
-    text: 'How are you?'
-  },
-  {
-    id: 2,
-    user: 'Bob',
-    userId: 2,
-    time: +new Date(),
-    text: 'Hello'
-  },
-  {
-    id: 3,
-    user: 'Carl',
-    userId: 3,
-    time: +new Date(),
-    text: 'Good day'
-  }
-];
-ThreadStore.putMessages(messages);
 
 module.exports = ThreadStore;
 

@@ -9,7 +9,7 @@ var ChatMessageItem = React.createClass({
     var message = this.props.message;
     return (
       <div className="col-xs-12 message-item">
-        <div className="col-xs-6">
+        <div className="col-xs-6 bold">
           {message.isOutgoing ? 'You' : message.user}
         </div>
         <div className="col-xs-6">

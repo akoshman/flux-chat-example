@@ -6,6 +6,13 @@ var ActionTypes = ChatConstants.ActionTypes;
 
 module.exports = {
 
+  retrieveMessages: function (messages) {
+    ChatAppDispatcher.dispatch({
+      type: ActionTypes.RETRIEVE_MESSAGES,
+      messages: messages
+    });
+  },
+
   selectThread: function (threadId) {
     ChatAppDispatcher.dispatch({
       type: ActionTypes.SELECT_THREAD,

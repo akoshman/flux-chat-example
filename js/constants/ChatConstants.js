@@ -4,8 +4,8 @@ var keyMirror = require('keymirror');
 module.exports = {
 
   ActionTypes: keyMirror({
+    RETRIEVE_MESSAGES: null,
     SELECT_THREAD: null,
-    RECEIVE_MESSAGES: null,
     SEND_MESSAGE: null
   })
 

@@ -2,10 +2,16 @@
 var ThreadsList = require('./ThreadsList.react');
 var ChatSection = require('./ChatSection.react');
 var MessageSendSection = require('./MessageSendSection.react');
+var Action = require('../dispatcher/Action.js');
+var MessagesData = require('../data/MessagesData.js');
 
 var React = require('react');
 
 var ChatApp = React.createClass({
+
+  componentDidMount: function () {
+    Action.retrieveMessages(MessagesData);
+  },
 
   render: function () {
     return (
