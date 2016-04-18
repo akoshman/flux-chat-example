@@ -1,1 +1,1 @@
-# react-examples
+# Simple Chat Application using Flux architecture
