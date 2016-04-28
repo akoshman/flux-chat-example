@@ -25,6 +25,12 @@ var ChatSection = React.createClass({
     ThreadStore.removeChangeListener(this._onChange);
   },
 
+  componentDidUpdate: function () {
+    if (this.refs.messagesList) {
+      this.refs.messagesList.scrollTop = this.refs.messagesList.scrollHeight;
+    }
+  },
+
   render: function () {
     var thread = this.state.thread;
     var hasConversations = this.state.threadsCount > 0;
@@ -34,7 +40,7 @@ var ChatSection = React.createClass({
     if (thread) {
       messages = thread.messages.map(function (message) {
         return (
-          <ChatMessageItem message={message} />
+          <ChatMessageItem key={message.id} message={message} />
         )
       })
     }
@@ -51,7 +57,7 @@ var ChatSection = React.createClass({
             {title}
           </div>
         </div>
-        <div className="list-group messages-list">
+        <div ref="messagesList" className="list-group messages-list">
           {messages}
         </div>
       </div>

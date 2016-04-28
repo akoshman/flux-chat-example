@@ -48,7 +48,7 @@ var MessageSendSection = React.createClass({
   componentDidUpdate: function () {
     if (this.state.currentThreadId < 0) return;
 
-    this.refs.messageInput.getDOMNode().focus();
+    this.refs.messageInput.focus();
   },
 
   _onMessageKeyDown: function (event) {
@@ -60,8 +60,8 @@ var MessageSendSection = React.createClass({
   },
 
   _sendMessage: function (text) {
-    var text = this.refs.messageInput.getDOMNode().value;
-    this.refs.messageInput.getDOMNode().value = '';
+    var text = this.refs.messageInput.value;
+    this.refs.messageInput.value = '';
     Action.sendMessage(text);
   }
 

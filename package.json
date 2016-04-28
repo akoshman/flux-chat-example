@@ -1,25 +1,26 @@
 {
   "name": "flux-chat",
   "version": "0.0.1",
-  "description": "Example Flux chat application.",
+  "description": "Flux chat application example",
   "repository": "https://github.com/akoshman/react-examples",
   "main": "js/app.js",
   "dependencies": {
-    "flux": "^2.0.0",
-    "keymirror": "~0.1.0",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "flux": "^2.1.1",
+    "keymirror": "^0.1.1",
     "object-assign": "^1.0.0",
-    "react": "^0.12.0",
     "bootstrap": "^3.3.6",
     "jquery": "^2.2.3",
-    "moment": "^2.12.0"
+    "moment": "^2.13.0"
   },
   "devDependencies": {
-    "browserify": "^6.2.0",
+    "watchify": "^2.1.1",
+    "browserify": "^13.0.0",
+    "reactify": "^1.1.1",
     "envify": "^3.0.0",
-    "jest-cli": "^0.4.3",
-    "reactify": "^0.15.2",
-    "uglify-js": "~2.4.15",
-    "watchify": "^2.1.1"
+    "uglify-js": "~2.6.2",
+    "jest-cli": "^12.0.2"
   },
   "scripts": {
     "start": "watchify -o dist/js/bundle.js -v -d js/app.js",
